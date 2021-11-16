@@ -43,22 +43,17 @@ yargs.command({
     }
 })
 yargs.command({
-    command: 'update', 
+    command: 'search', 
     describe: 'Updating the notes',
     builder: {
         title : {
-            describe : "Note Title",
+            describe : "search Title",
             demandOption: true,
             type: 'string'
         },
-        body : {
-            describe : "Note body",
-            demandOption: true,
-            type: 'string'
-        }
     },
-    handler: function(){
-           
+    handler(argv){
+           notes.readNote(argv.title)
     }
 })
 yargs.command({
