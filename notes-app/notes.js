@@ -12,11 +12,15 @@ const readNote = (title) =>{
     console.log("========================================")
     console.log (chalk.green.inverse("Title : "+ find.title))
     console.log ("Data : "+ find.body)
+    console.log("========================================")
+
   }
   else{
   console.log(chalk.yellow.inverse("Search Note Title is :" + title))
   console.log("========================================")
   console.log (chalk.red.inverse("No Data Found!"))
+  console.log("========================================")
+
   
   }
 }
@@ -33,11 +37,17 @@ const notes = loadNotes()
       body: body
     })
     saveNote(notes)
+    console.log("========================================")
     console.log(chalk.green.inverse("Note Added Successfully!"))
+    console.log("========================================")
+
   }
   else
   {
+    console.log("========================================")
     console.log(chalk.red.inverse("Note Title is Taken!"))
+    console.log("========================================")
+
   }
 
 }
@@ -57,28 +67,36 @@ const loadNotes = () =>{
 }
 
 const removeNote =(title) => {
+  console.log("========================================")
   console.log("remove function called")
   console.log("title to remove note : ",title)
   const notes = loadNotes()
   const notesToKeep = notes.filter((note) => note.title !== title)
   if(notes.length > notesToKeep.length)
   {
+    console.log("========================================")
     console.log(chalk.green.inverse('Note Removed Sucessfully'))
+    console.log("========================================")
+
     saveNote(notesToKeep)
   }
   else
   {
+    console.log("========================================")
     console.log(chalk.red.inverse('No Note Found'))
+    console.log("========================================")
+
   }
   }
 
 const list = () => {
     const notes =loadNotes()
     console.log(chalk.inverse('Your Notes'))
-    console.log("==========")
+    console.log("========================================")
     notes.forEach((note) =>{
       console.log( "Title : " + note .title)
       console.log( "Note : " + note .body)
+      console.log("========================================")
 
     })
 
