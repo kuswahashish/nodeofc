@@ -1,6 +1,9 @@
 const path= require('path');
 const hbs = require('hbs')
 const express = require('express');
+const request = require('request')
+const geocode = require('./utils/geocode.js')
+const forecast = require('./utils/forecast.js')
 
 const app = express()
 //Defined Path
@@ -18,44 +21,74 @@ app.use(express.static(publicPath))
 app.get('',(req, res) => {
     // console.log(req.params) 
     res.render('index',{
-        htitle: 'Dynamic pages',
+        htitle: 'WeatherForcast | Home',
         title: 'Weather App',
         name:'ashish'
     })
 })
 app.get('/about',(req, res) => {
     res.render('about',{
-        htitle: 'Dynamic pages',
+        htitle: 'WeatherForcast | About',
         title: 'About page',
-        name:'john'
+        name:'ashish'
     })
 })
 app.get('/help',(req, res) => {
-    res.render('index',{
-        htitle: 'Dynamic pages',
+    res.render('help',{
+        htitle: 'WeatherForcast | Help',
         title: 'Help Page',
-        name:'wick'
+        name:'ashish'
     })
 })
 app.get('/weather',(req,res)=>{
-    res.send({ 
-        weather : 'its cloudy',
-        location : 'ahmedabad'
-    })
+    if(!req.query.search){
+        res.send({
+            error : "please Enter the search query & Location"
+        })
+    }
+    else{
+        geocode(req.query.search,(error,{latitude,longitude,location} = {}) => {
+            if(error) {
+                return res.send({
+                    error: "Unable to Find Location ! Try Again"
+                })
+            }
+            forecast(latitude,longitude, (error,ForecastData) => {
+                if(error) {
+                    return res.send({
+                        error: "Unable to Finda Location ! Try Again"
+                    })
+                }
+                else{
+                    res.send({
+                        location:location,
+                        ForecastData:ForecastData,
+                        htitle: 'WeatherForcast | search',
+                        title: 'Weather App',
+                        name:'ashish'
+                    })
+                }
+            })
+        })
+    }
+    
 })
 
 app.get('/help/*',(req,res)=>{
     res.render('articalerror',{
-        htitle: 'Dynamic pages',
+        htitle: 'WeatherForcast | Error',
+        
+        name:'ashish'
       
     })
 })
 app.get('*',(req,res)=>{
     res.render('404error',{
-        htitle: 'Dynamic pages',
-      
+        htitle: 'WeatherForcast | Error',
+        name:'ashish'
     })
 })
 app.listen(3000,()=>{
     console.log("Server is Ready at port number 3000")
+
 }) 

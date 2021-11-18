@@ -94,10 +94,8 @@ const list = () => {
     console.log(chalk.inverse('Your Notes'))
     console.log("========================================")
     notes.forEach((note) =>{
-      console.log( "Title : " + note .title + " Note : " + note .body )
-      console.log("========================================")
-
-    })
+      console.log( "Title : " + note .title +"|| Note : " + note .body )
+      })
 
 }
 
