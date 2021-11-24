@@ -1,0 +1,18 @@
+<%- include("./partials/header")%>
+
+
+<nav class="navbar navbar-light bg-light">
+ <a href="/" class="navbar-brand">&nbspTo-Do</a>
+</nav>
+
+<div class="container">
+    <form action="/update" method="post" class="d-flex my-5">
+        <input type="hidden" name="_id" type="hidden" value="<%= _id%>" />
+        <input type="text" name="etodo" id="etodo" class="form-control" value="<%= etodo %>" placeholder="Enter Todo...">
+        <input type="submit" value="Update Todo" class="btn btn-md btn-dark mx-2" >
+    </form>
+</div>
+
+</div>
+
+<%- include("./partials/footer")%>

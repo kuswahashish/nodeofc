@@ -1,17 +1,17 @@
 {
-  "name": "wep-server",
+  "name": "try1",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node src/app.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
-    "hbs": "^4.2.0",
-    "request": "^2.88.2"
+    "mongodb": "^4.2.0",
+    "nodemon": "^2.0.15"
   }
 }

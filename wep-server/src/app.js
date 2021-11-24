@@ -6,6 +6,7 @@ const geocode = require('./utils/geocode.js')
 const forecast = require('./utils/forecast.js')
 
 const app = express()
+const port = process.env.PORT || 3000
 //Defined Path
 const publicPath = path.join(__dirname, '../public')
 const templatePath = path.join(__dirname, '../templates/views')
@@ -18,14 +19,25 @@ hbs.registerPartials(partialsPath)
 //static directory 
 app.use(express.static(publicPath))
 
-app.get('',(req, res) => {
+function tesy(req,res,next){
+    console.log(req.url);
+    
+}
+
+
+
+function getHandler(req,res) {
+    console.log('get handler called....');
     // console.log(req.params) 
     res.render('index',{
         htitle: 'WeatherForcast | Home',
         title: 'Weather App',
         name:'ashish'
     })
-})
+}
+
+
+app.get('',tesy,getHandler)
 app.get('/about',(req, res) => {
     res.render('about',{
         htitle: 'WeatherForcast | About',
@@ -74,7 +86,7 @@ app.get('/weather',(req,res)=>{
     
 })
 
-app.get('/help/*',(req,res)=>{
+app.get('/help/*',(req,res,) => {
     res.render('articalerror',{
         htitle: 'WeatherForcast | Error',
         
@@ -88,7 +100,7 @@ app.get('*',(req,res)=>{
         name:'ashish'
     })
 })
-app.listen(3000,()=>{
+app.listen(port,()=>{
     console.log("Server is Ready at port number 3000")
 
 }) 

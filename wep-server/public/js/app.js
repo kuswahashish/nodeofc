@@ -1,7 +1,3 @@
-console.log('js file loaded.')
-
-
-
 const weatherform = document.querySelector('form')
 const search = document.querySelector('input')
 const p1 =  document.querySelector('#p1')
@@ -11,7 +7,7 @@ weatherform.addEventListener('submit', (e)=>{
     console.log("test")
     const location = search.value
     console.log(location)
-    fetch('http://localhost:3000/weather?search='+location).then((response) => {
+    fetch('/weather?search='+location).then((response) => {
     response.json().then((data) => {
         if(data.error) {
             p1.textContent = 'Error: ' + data.error
