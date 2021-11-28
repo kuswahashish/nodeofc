@@ -17,6 +17,6 @@ app.use(require("./routes/index"))
 app.use(require("./routes/todo"))
 
 
-app.listen(3000,() => {
+app.listen(3003,() => {
     console.log('Server is started at port 3000')
 })
